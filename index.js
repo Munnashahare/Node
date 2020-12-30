@@ -1,30 +1,32 @@
 const express = require('express');
 const app = express();
 
-app.get("/", (req,res) => {
-    res.send("get method.");
-});
 
-// get method with req.params
-app.get("/:name", (req,res) => {
-    res.send(req.params.name);
-});
 
-// get method with req.query
-app.get("/", (req,res) => {
-    res.send(req.query.name+" "+req.query.email);
-});
 
-app.post("/post", (req,res) => {
-    res.send("post method is called.");
-});
+app.use("/", require("./routes/product.route"));
+app.use("/", require("./routes/user.route"));
 
-app.put("/update", (req,res) => {
-    res.send("put method is called.");
-});
 
-app.delete("/delete", (req,res) => {
-    res.send("delete mehode called.");
-});
+
+
+// app.post("/post/:product_it/:product_name/:product_category", (req,res) => {
+//     var obj = {
+//         poduct_id: req.params.product_name,
+//         product_name: "dettol",
+//         product_category: "washing"
+//     }
+//     users.push(obj);
+
+//     res.send(users);
+// });
+
+// app.put("/update", (req,res) => {
+//     res.send("put method is called.");
+// });
+
+// app.delete("/delete", (req,res) => {
+//     res.send("delete mehode called.");
+// });
 
 app.listen(4000, ()=> console.log("server is running."))
